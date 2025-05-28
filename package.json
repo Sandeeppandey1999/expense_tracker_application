@@ -1,6 +1,7 @@
 {
   "name": "expense-tracker",
-  "homepage": "https://github.com/Sandeeppandey1999/expense_tracker_application",
+ "homepage": "https://sandeeppandey1999.github.io/expense_tracker_application",
+  "author": "Sandeep Pandey",
   "description": "A simple expense tracker application built with React and Material-UI.",
   "version": "0.1.0",
   "private": true,
