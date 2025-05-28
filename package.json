@@ -1,5 +1,7 @@
 {
   "name": "expense-tracker",
+  "homepage": "https://github.com/Sandeeppandey1999/expense_tracker_application",
+  "description": "A simple expense tracker application built with React and Material-UI.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,6 +16,7 @@
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "axios": "^1.9.0",
+    "gh-pages": "^6.3.0",
     "jwt-decode": "^4.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -26,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
