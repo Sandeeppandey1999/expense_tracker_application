@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Grid container spacing={3} mb={3}>
+      <Grid container spacing={3} m={3}>
         <Grid item size={4}>
           <Card sx={{ backgroundColor: '#e6ffed', boxShadow: 4 }}>
             <CardContent>

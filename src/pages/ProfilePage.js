@@ -7,8 +7,17 @@ import {
   Snackbar,
   Alert,
   CircularProgress,
-  Box
+  Box,
+  Card,
+  CardContent,
+  InputAdornment,
+  Stack,
 } from '@mui/material';
+
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+
 import { fetchUser, updateUser } from '../services/apiService';
 
 const ProfilePage = () => {
@@ -51,7 +60,7 @@ const ProfilePage = () => {
     }
     try {
       await updateUser(user, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
       });
       setNotify({ open: true, type: 'success', message: 'Profile updated successfully!' });
     } catch (err) {
@@ -72,29 +81,67 @@ const ProfilePage = () => {
   }
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" mt={4} gutterBottom>
-        My Profile
-      </Typography>
+    <Container maxWidth="sm" sx={{ mt: 5 }}>
+      <Card sx={{ boxShadow: 4, borderRadius: 3 }}>
+        <CardContent>
+          <Typography variant="h4" gutterBottom align="center" fontWeight="bold" color="primary">
+            My Profile
+          </Typography>
 
-      {['username', 'email', 'mobile'].map((field) => (
-        <TextField
-          key={field}
-          label={field.charAt(0).toUpperCase() + field.slice(1)}
-          name={field}
-          fullWidth
-          disabled={field === 'username'}
-          margin="normal"
-          value={user[field] || ''}
-          onChange={handleChange}
-        />
-      ))}
+          <Stack spacing={3}>
+            <TextField
+              label="Username"
+              name="username"
+              fullWidth
+              disabled
+              value={user.username || ''}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircleIcon color="action" />
+                  </InputAdornment>
+                ),
+              }}
+            />
 
-      <Box mt={2}>
-        <Button variant="contained" color="primary" onClick={handleSave}>
-          Save
-        </Button>
-      </Box>
+            <TextField
+              label="Email"
+              name="email"
+              fullWidth
+              value={user.email || ''}
+              onChange={handleChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon color="action" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <TextField
+              label="Mobile"
+              name="mobile"
+              fullWidth
+              value={user.mobile || ''}
+              onChange={handleChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PhoneIcon color="action" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+
+          <Box mt={4} textAlign="center">
+            <Button variant="contained" color="primary" size="large" onClick={handleSave}>
+              Save Changes
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
 
       <Snackbar
         open={notify.open}
